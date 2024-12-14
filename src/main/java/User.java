@@ -1,95 +1,118 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package first.eventmangmentsystem;
+import java.util.Scanner;
+
+/**
+ *
+ * @author ASUS
+ */
+
 public class User {
 
     private String userId;
     private String name;
-    private String Email;
+    private String email; 
     private String phoneNo;
     private String password;
     private String role;
 
-
-    public User(String userId, String name, String Email, String phoneNo, String password, String role){
+    // Constructor
+    public User(String userId, String name, String email, String phoneNo, String password, String role) {
         this.userId = userId;
         this.name = name;
-        this.Email = Email;
+        this.email = email;
         this.phoneNo = phoneNo;
         this.password = password;
         this.role = role;
     }
 
-    public String getUserId(){
+    // Getters
+    public String getUserId() {
         return userId;
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
-    public String getEmail(){
-        return Email;
+    public String getEmail() {
+        return email;
     }
 
-    public String getPhoneNo(){
+    public String getPhoneNo() {
         return phoneNo;
     }
 
-    public String getPassword(){
+    public String getPassword() {
         return password;
     }
 
-    public String getRole(){
+    public String getRole() {
         return role;
     }
 
-    public void setName(String name){
+    // Setters 
+    public void setName(String name) {
         this.name = name;
     }
 
-    public void setEmail(String Email){
-        this.Email = Email;
+    public void setEmail(String email) {
+        if (email.contains("@") && email.contains(".")) { // Basic validation
+            this.email = email;
+        } else {
+            System.out.println("Invalid email format.");
+        }
     }
 
-    public void setPhoneNo(String phoneNo){
-        this.phoneNo = phoneNo;
+    public void setPhoneNo(String phoneNo) {
+        if (phoneNo.matches("\\d{10}")) { // Ensures the phone number is 11 digits
+            this.phoneNo = phoneNo;
+        } else {
+            System.out.println("Invalid phone number. Please enter a 11-digit number.");
+        }
     }
 
-    public void setPassword(String password){
+    public void setPassword(String password) {
         this.password = password;
     }
 
-    public void setRole(String role){
+    public void setRole(String role) {
         this.role = role;
     }
 
-    public void displayInfo(){
-        System.out.println("----------------------");
-        System.out.println("User ID: " + userId);
-        System.out.println("Name: " +name);
-        System.out.println("Email: " +Email);
-        System.out.println("Phone: " +phoneNo);
-        System.out.println("Role: " +role);
+    
+    public String displayInfo(){
+        return "\n----------------\n"+
+                "User ID: " + userId+
+                "\nName: " + name+
+                "\nEmail: " + email+
+                "\nPhone: " + phoneNo+
+                "\nRole: "+ role;                    
     }
 
-    public static User askrole(String userId, String name, String email, String phoneNo, String password){
-        System.out.println("Enter the user role:(Customer, ProjectManger, ServiceProvider, admin): ");
 
+    // Create user roles
+    public static User askRole(String userId, String name, String email, String phoneNo, String password) {
         Scanner input = new Scanner(System.in);
+        System.out.print("Enter the user role (Customer, ProjectManager, ServiceProvider, Admin): ");
         String role = input.nextLine().trim();
 
-        switch(role.toLowerCase()){
-
+        switch (role.toLowerCase()) {
             case "customer":
-                return new Customer(userId, name, email, phoneNo, password,"Customer");
-            case "projectmanger":
-                return new ProjectManger(userId, name, email, phoneNo, password);
+                return new Customer(userId, name, email, phoneNo, password, role);
+            case "projectmanager":
+                return new ProjectManager(userId, name, email, phoneNo, password);
             case "serviceprovider":
                 return new ServiceProvider(userId, name, email, phoneNo, password);
             case "admin":
                 return new Admin(userId, name, email, phoneNo, password);
             default:
-                System.out.println("Invalid Role!");
+                System.out.println("Invalid Role! Defaulting to generic User.");
                 return new User(userId, name, email, phoneNo, password, "User");
         }
     }
-
 }
+
