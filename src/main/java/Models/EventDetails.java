@@ -1,3 +1,5 @@
+package Models;
+
 public class EventDetails {
     private String eventType;
     private String date;

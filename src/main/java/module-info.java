@@ -11,10 +11,10 @@ module com.example.enentmanagement {
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
 
-    opens com.example.enentmanagement to javafx.fxml;
-    exports com.example.enentmanagement;
-    exports;
-    opens to
-    exports;
-    opens to
+//    opens com.example.enentmanagement to javafx.fxml;
+//    exports com.example.enentmanagement;
+//    exports;
+//    opens to
+//    exports;
+//    opens to
 }

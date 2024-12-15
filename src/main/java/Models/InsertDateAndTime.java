@@ -1,3 +1,5 @@
+package Models;
+
 import java.util.*;
 public class InsertDateAndTime {
     Scanner date = new Scanner(System.in);
