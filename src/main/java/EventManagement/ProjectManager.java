@@ -8,15 +8,27 @@ package first.eventmangmentsystem;
  *
  * @author ASUS
  */
+import Models.InsertDateAndTime;
+import Models.User;
+
 import java.util.ArrayList;
 
-public class ProjectManager extends User{
+public class ProjectManager extends User {
     //unnecessary
 //    private String PM_Id;  
 //    private String PM_Name;
 //    private String PM_Email;
 //    private String PM_password;
 //    private String PM_MobileNumber;
+
+    //necessary for sending requist to sp
+    String eventType;
+    InsertDateAndTime eventDate;
+    int numberOfPeople;
+    String specialRequirements;
+
+
+
     private String PM_AdditionalAccount;
     private ArrayList<String> customerList;
     private ArrayList<String> BookingDetailsList;
@@ -46,10 +58,24 @@ public boolean login(String enteredEmail, String enteredPassword) {
             return false;
         }
     }
-public void ReceiveRequist(String Requist){
-        System.out.println("Received Requist"+Requist);
+
+//the fn
+public void ServiceRequest(String eventType, InsertDateAndTime eventDate, int numberOfPeople, String specialRequirements) {
+    this.eventType = eventType;
+    this.eventDate = eventDate;
+    this.numberOfPeople = numberOfPeople;
+    this.specialRequirements = specialRequirements;
+}
+
+    @Override
+    public String toString() {
+        return "Event Type: " + eventType + "\nEvent Date: " + eventDate +
+                "\nNumber of People: " + numberOfPeople + "\nSpecial Requirements: " + specialRequirements;
     }
-//public boolean CheckAvailability(String service){
+}
+
+//public void ReceiveRequist(String Requist){
+ ///blic boolean CheckAvailability(String service){
 //        for (serviceproviderprovider:.ServiceProviderList ){
 //            if (provider.hasservice(service)){
 //                System.out.println("service found with provider :"+provider.getprovidername);

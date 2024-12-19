@@ -56,7 +56,7 @@ public class Admin extends User {
     }
 
     public void forwardRequestToPM(EventDetails request) {
-        System.out.println("Forwarding request to PM: " + request.eventType);//event type in eventDetails class
+        System.out.println("Forwarding request to PM: " + request.ٌeventType);//event type in eventDetails class
     }
 
     public void addReservation(Reservation reservation) {
